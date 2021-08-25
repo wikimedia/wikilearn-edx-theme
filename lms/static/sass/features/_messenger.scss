@@ -1,0 +1,138 @@
+.messenger {
+    display: flex;
+    border: 2px solid lightgray;
+    width: 70%;
+    margin: auto;
+    .inbox-container {
+        width: 30%;
+        border: 2px solid lightgray;
+        height: 58vh;
+        .start-new-msg-div {
+            display: flex;
+            flex-direction: row-reverse;
+            padding: 1rem;
+            .start-new-msg-btn {
+                display: block;
+            }
+        }
+        .inbox-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            overflow: auto;
+            height: 52vh;
+            .inbox-message {
+                padding: 1rem;
+                border-radius: 3px;
+                .unread-count {
+                    float: right;
+                    font-size: 1.5rem
+                }
+                .name {
+                    font-size: 15px
+                }
+                .about {
+                    float: left;
+                    padding-left: 8px;
+                    width: 70%;
+                }
+                .status {
+                    color: darkslategray;
+                    font-size: 13px
+                }
+            }
+            .inbox-message:hover {
+                background: #efefef;
+                cursor: pointer
+            }
+            .active {
+                background: #efefef
+            }
+            .inbox-message:after {
+                visibility: hidden;
+                display: block;
+                font-size: 0;
+                content: " ";
+                clear: both;
+                height: 0
+            }
+        }
+    }
+    .chat-container {
+        width: 70%;
+        border: 1px solid lightgray;
+        padding: 0.5rem 1rem;
+        
+        .selected-user {
+            height: 5rem;
+            font-size: 2rem;
+            display: flex;
+            align-items: center
+        }
+        .chat {
+            border: 2px solid lightgray;
+            overflow: auto;
+            height: 41vh;
+            display: flex;
+            flex-direction: column-reverse;
+            padding: 0.5rem;
+            box-sizing: border-box;
+            margin: 1rem auto;
+            .msg-sender {
+                font-weight: bold;
+                font-size: 1.4rem;
+            }
+        }
+        .new-message {
+            display: flex;
+            margin-top: 1rem;
+            .new-message-input {
+                resize: none;
+                height: 6rem;
+                padding: 1%;
+                width: 100%;
+                margin-right: 1rem;
+            }
+        }
+    }
+    .loading {
+        color: red;
+    }
+}
+
+img {
+    width: 45px;
+    border-radius: 50%;
+    float: left;
+}
+
+.modal.modal-update {
+    left: 0;
+    background: none;
+    width: 100%;
+    position: fixed;
+    height: 100%;
+    .modal-body {
+        padding: 2.5rem;
+        .multiselect-container {
+            margin-bottom: 2rem;
+        }
+    }
+    .modal-title {
+        font-size: 2rem;
+    }
+    label {
+        font-size: 1.25rem
+    }
+    textarea {
+        height: 10rem;
+        resize: none;
+    }
+    .modal-footer {
+        .btn.btn-secondary {
+            &:hover {
+                color: black;
+            }
+        }
+    }
+}
