@@ -78,10 +78,18 @@
             padding: 0.5rem;
             box-sizing: border-box;
             margin: 1rem auto;
-            .msg-sender {
-                font-weight: bold;
-                font-size: 1.4rem;
+            .chat-div-detail {
+                margin-bottom: 1.5rem;
+                .msg-sender {
+                    font-weight: bold;
+                    font-size: 1.4rem;
+                }
+                .chat-time {
+                    float: right;
+                }
+
             }
+          
         }
         .new-message {
             display: flex;
