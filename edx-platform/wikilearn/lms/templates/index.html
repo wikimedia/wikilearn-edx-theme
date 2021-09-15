@@ -1,0 +1,162 @@
+<%page expression_filter="h"/>
+<%inherit file="main.html" />
+<%namespace name='static' file='static_content.html'/>
+<%!
+from django.utils.translation import ugettext as _
+from django.urls import reverse
+
+from openedx.core.djangolib.markup import HTML, Text
+%>
+
+<main id="main" aria-label="Content" tabindex="-1">
+    <section class="main-banner">
+      <div class="banner-container">
+        <div class="text-block">
+          <h1>Unlock The World’s Knowledge</h1>
+          <p>Any details or captions Any details or captions Any details or captions Any details or captions Any details Any details or captions Any details or captions</p>
+        </div>
+        <div class="image-block">
+          <img src="${static.url('images/banner-image.png')}" alt="Unlock The World’s Knowledge">
+        </div>
+      </div>
+    </section>
+    <section class="home">
+      <header class="hidden">
+        <div class="outer-wrapper">
+          <div class="title">
+            <div class="heading-group">
+              % if homepage_overlay_html:
+                ${homepage_overlay_html | n, decode.utf8}
+              % else:
+                <%include file="index_overlay.html" />
+              % endif
+            </div>
+            % if settings.FEATURES.get('ENABLE_COURSE_DISCOVERY'):
+              <div class="course-search">
+                <form method="get" action="/courses">
+                  <label><span class="sr">${_("Search for a course")}</span>
+                    <input class="search-input" name="search_query" type="text" placeholder="${_("Search for a course")}"></input>
+                  </label>
+                  <button class="search-button" type="submit">
+                    <span class="icon fa fa-search" aria-hidden="true"></span><span class="sr">${_("Search")}</span>
+                  </button>
+                </form>
+              </div>
+            % endif
+
+          </div>
+          <%include file="index_promo_video.html" />
+        </div>
+      </header>
+      <section class="courses-block">
+        <div class="home-tabs hidden">
+          <ul>
+            <li class="active"><a href="#">Featured</a></li>
+            <li><a href="#">Recently Added</a></li>
+            <li><a href="#">All Courses</a></li>
+          </ul>
+        </div>
+        <%include file="${courses_list}" />
+      </section>
+    </section>
+    <section class="blog hidden">
+      <div class="blog-container">
+        <article class="blog-info-post">
+          <h2>See what we have been up to</h2>
+          <a href="#" class="link-read-more">View All News ></a>
+        </article>
+        <article class="blog-post">
+          <div class="text-block">
+            <div class="blog-header">
+              <span class="date">19 April 2021</span>
+              <span class="tag">Category</span>
+            </div>
+            <h2 class="blog-title">Wikipedia readers in Latin America invited to support 20 years of free knowledge through new fundraising campaign</h2>
+            <span class="author">By Pats Pena</span>
+            <a href="#" class="link-read-more">Read More ></a>
+          </div>
+          <div class="image-block">
+            <img src="${static.url('images/blog-1.jpg')}" alt="">
+          </div>
+        </article>
+        <article class="blog-post">
+          <div class="text-block">
+            <div class="blog-header">
+              <span class="date">26 Februrary 2021</span>
+              <span class="tag">Category</span>
+            </div>
+            <h2 class="blog-title">Wikipedia needs local journalism and the open Web</h2>
+            <span class="author">By Jan Gerlach</span>
+            <a href="#" class="link-read-more">Read More ></a>
+          </div>
+          <div class="image-block">
+            <img src="${static.url('images/blog-2.jpg')}" alt="">
+          </div>
+        </article>
+      </div>
+    </section>
+    <section class="subscription hidden">
+      <div class="subscribe-container">
+        <div class="text-box">
+          <h2>Subscribe to news about ongoing projects and initiatives</h2>
+        </div>
+        <div class="form-box">
+          <form action="#">
+            <div class="subscribe-form">
+              <input type="email" class="form-field form-control" placeholder="Sign up for email updates" />
+              <button type="submit" class="form-button">Subscribe</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+</main>
+
+% if show_homepage_promo_video:
+  <section id="video-modal" class="modal home-page-video-modal video-modal">
+    <div class="inner-wrapper">
+      <iframe title="YouTube Video" width="640" height="360" src="//www.youtube.com/embed/${homepage_promo_video_youtube_id}?showinfo=0" frameborder="0" allowfullscreen></iframe>
+    </div>
+  </section>
+% endif
+
+<%block name="js_extra">
+   <script type="text/javascript" src="${static.url('js/slick.min.js')}"></script>
+   <script type="text/javascript">
+      $(window).load(function() {
+         if(getParameterByName('next')) {
+              $('#login').trigger("click");
+         }
+      });
+
+      $(document).ready(function () {
+        $('.courses-listing').slick({
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          responsive: [
+            {
+              breakpoint: 575,
+              settings: {
+                centerMode: true,
+                slidesToShow: 1,
+              }
+            },
+            {
+              breakpoint: 900,
+              settings: {
+                slidesToShow: 2,
+              }
+            }
+          ]
+        });
+      });
+   </script>
+</%block>
+
+% if show_signup_immediately is not UNDEFINED:
+  ## NOTE: This won't work in production, because anonymous views are cached, so it will
+  ## show either with or without this extra js for 3 minutes at a time.
+<script type="text/javascript">
+  $(window).load(function() {$('#signup_action').trigger("click");});
+</script>
+% endif
