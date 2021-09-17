@@ -8,6 +8,8 @@
 // Initialize the Open edX Bootstrap theme
 @import 'variables';
 @import '../../../base/mixins-breakpoints';
+@import '../../../base/spinner';
+@import '../../../base/mixins';
 @import '../../../base/reset';
 @import '../../../features/landing';
 @import '../../../features/messenger';
