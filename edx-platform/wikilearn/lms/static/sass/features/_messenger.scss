@@ -35,6 +35,7 @@ html {
         background: none;
         border: 0;
         padding: 0;
+        margin: 0;
         font: 13px/1.385 $font-family-sans-serif;
     }
 
@@ -258,7 +259,10 @@ html {
                     }
                 }
 
-                .about { overflow: hidden; }
+                .about {
+                    overflow: hidden;
+                    padding: 4px 0 0;
+                }
 
                 .status {
                     color: darkslategray;
@@ -315,10 +319,6 @@ html {
             }
         }
 
-        .chat-body {
-
-        }
-
         .chat {
             overflow: auto;
             margin: 20px 0;
@@ -330,15 +330,38 @@ html {
 
             .chat-row {
                 @include clearfix;
-                padding: 8px 10px;
+                padding: 10px;
                 max-width: 850px;
+                position: relative;
 
                 @include media-up(xs) {
-                    padding: 8px 24px;
+                    padding: 20px 24px;
+                }
+
+                &:first-of-type {
+
+                    &:after {
+                        display: none;
+                    }
                 }
 
                 &.unread {
                     background: #fef6e7;
+                }
+
+                &:after {
+                    content: '';
+                    position: absolute;
+                    bottom: 0;
+                    right: 10px;
+                    left: 62px;
+                    height: 1px;
+                    display: block;
+                    background: #a2a9b1;
+                    @include media-up(xs) {
+                        right: 25px;
+                        left: 76px;
+                    }
                 }
             }
 
@@ -347,7 +370,6 @@ html {
                 font-size: 13px;
                 line-height: 1.385;
                 color: #000;
-                min-height: 60px;
 
                 .msg-sender {
                     font-weight: 700;
@@ -367,7 +389,11 @@ html {
         }
 
         .chat-reply {
-            padding-left: 76px;
+            padding: 20px 0 0 62px;
+            max-width: 850px;
+            @include media-up(xs) {
+                padding: 20px 0 0 76px;
+            }
         }
 
         .btn-box {
