@@ -1,0 +1,71 @@
+## mako
+<%page expression_filter="h"/>
+<%!
+  from django.urls import reverse
+  from django.utils.translation import ugettext as _
+  from lms.djangoapps.branding.api import get_footer
+  from openedx.core.djangoapps.lang_pref.api import footer_language_selector_is_enabled
+%>
+<% footer = get_footer(is_secure=is_secure) %>
+<% icp_license_info = getattr(settings, 'ICP_LICENSE_INFO', {})%>
+<%namespace name='static' file='static_content.html'/>
+
+<div class="wrapper wrapper-footer">
+  <footer id="footer-openedx" class="footer"
+    ## When rendering the footer through the branding API,
+    ## the direction may not be set on the parent element,
+    ## so we set it here.
+    % if bidi:
+      dir=${bidi}
+    % endif
+  >
+    <div class="footer-container">
+      <nav class="nav-colophon" aria-label="${_('About')}">
+        <ol>
+          <li class="nav-colophon">
+            <a href="#">Privacy Policy</a>
+          </li>
+          <li class="nav-colophon">
+            <a href="#">About Wikimedia</a>
+          </li>
+          <li class="nav-colophon">
+            <a href="#">Disclaimers</a>
+          </li>
+          <li class="nav-colophon">
+            <a href="#">Cookie Statement</a>
+          </li>
+        </ol>
+      </nav>
+
+      % if context.get('include_language_selector', footer_language_selector_is_enabled()):
+          <%include file="${static.get_template_path('widgets/footer-language-selector.html')}"/>
+      % endif
+
+      <div class="wrapper-logo">
+        <p>
+          <a href="/">
+            ## The default logo is a placeholder.
+            ## You can either replace this link entirely or update
+            ## the FOOTER_ORGANIZATION_IMAGE in Django settings.
+            ## If you customize FOOTER_ORGANIZATION_IMAGE, then the image
+            ## can be included in the footer on other sites
+            ## (e.g. a blog or marketing front-end) to provide a consistent
+            ## user experience.  See the branding app for details.
+            <img alt="${_('organization logo')}" src="${footer['logo_image']}">
+          </a>
+        </p>
+      </div>
+    </div>
+  </footer>
+</div>
+% if include_dependencies:
+  <%static:js group='base_vendor'/>
+  <%static:css group='style-vendor'/>
+  <%include file="widgets/segment-io.html" />
+  <%include file="widgets/segment-io-footer.html" />
+% endif
+% if footer_css_urls:
+  % for url in footer_css_urls:
+    <link rel="stylesheet" type="text/css" href="${url}"></link>
+  % endfor
+% endif

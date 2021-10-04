@@ -1,0 +1,20 @@
+// lms - bootstrap utilities - variables
+// ====================
+
+// ----------------------------
+// #COMPONENT SIZING
+// ----------------------------
+$header-logo-width: 60px !default;
+$header-logo-height: 36px;
+$header-user-image-size: 40px !default;
+
+// ----------------------------
+// #COLORS
+// ----------------------------
+$theme-blue:                #36c;
+$base-font-color:           #000;
+
+$font-family-sans-serif: "Helvetica Neue", Helvetica, "Open Sans", Arial, sans-serif;
+
+// Initialize the Open edX Bootstrap theme
+@import 'edx-bootstrap/sass/open-edx/theme';
