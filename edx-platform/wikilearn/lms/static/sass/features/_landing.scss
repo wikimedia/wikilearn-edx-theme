@@ -1,3 +1,27 @@
+html {
+    background: $footer-bg;
+}
+
+a:not(.btn) {
+  color: $link-color;
+}
+
+a:visited:not(.btn) {
+  color: $link-hover;
+}
+
+a:hover:not(.btn),
+a:focus:not(.btn) {
+  color: $link-hover;
+}
+
+.content-wrapper {
+
+    &.main-container {
+        min-height: calc(100vh - 275px);
+    }
+}
+
 .main-banner {
     position: relative;
     overflow: hidden;
