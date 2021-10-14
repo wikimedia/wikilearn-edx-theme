@@ -12,7 +12,17 @@ $header-user-image-size: 40px !default;
 // #COLORS
 // ----------------------------
 $theme-blue:                #36c;
+$cornflower-blue:           #447ff5;
+$butterfly-bush:            #6b4ba1;
 $base-font-color:           #000;
+$footer-bg:                 #f6f6f6;
+$primary:                   $theme-blue;
+$action-primary-bg:         $theme-blue;
+
+$link-color:                $theme-blue;
+$link-hover:                $cornflower-blue;
+$link-visited:              $butterfly-bush;
+
 
 $font-family-sans-serif: "Helvetica Neue", Helvetica, "Open Sans", Arial, sans-serif;
 
