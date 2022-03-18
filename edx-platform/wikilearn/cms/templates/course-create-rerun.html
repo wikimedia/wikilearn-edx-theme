@@ -68,9 +68,26 @@ from openedx.core.djangolib.js_utils import js_escaped_string
               </div>
 
               <div class="wrapper-form">
-                <fieldset>
+                <fieldset role="radiogroup">
                   <legend class="sr">${_("Required Information to Create a re-run of a course")}</legend>
 
+                  <ol>
+                      <li class="field">
+                        <input type="radio" class="field-radio" name="rerun-type" id="basic-rerun" value="basic" aria-labelledby="basic-rerun-label" />
+                        <label id="basic-rerun-label" class="basic-rerun-label" for="basic-rerun-paced">${_("Basic re-run")}</label>
+                        <span class="tip">${_("Create a copy of a course, It should be considered as a new course")}</span>
+                      </li>
+                      <li class="field">
+                        <input type="radio" class="field-radio" name="rerun-type" id="translate-course-rerun" value="translate" aria-labelledby="translate-course-rerun-label"/>
+                        <label id="translate-course-rerun-label" class="translate-course-rerun-label" for="translate-course-rerun">${_("Translate Course re-run")}</label>
+                        <span class="tip">${_("Create a copy of a course and request to change a course into a new language")}</span>
+                      </li>
+                  </ol>
+                </fieldset>
+
+                <fieldset>
+                  <legend class="sr">${_("Required Information to Create a re-run of a course")}</legend>
+                  
                   <ol class="list-input">
                     <li class="field text" id="field-base-course-id">
                       <label for="field-base-course-id-label">${_("Base Course ID")}</label>
@@ -119,19 +136,6 @@ from openedx.core.djangolib.js_utils import js_escaped_string
                       </div>
                     </li>
 
-                    <li class="row">
-                      <div class="column field text">
-                        <input type="radio" class="field-radio" name="rerun-type" id="basic-rerun" value="basic" aria-labelledby="basic-rerun-label" />
-                        <label id="basic-rerun-label" class="basic-rerun-label" for="basic-rerun">${_("Basic re-run")}</label>
-                        <span class="tip">${_("Create a copy of a course, It should be considered as a new course")}</span>
-                      </div>
-                      <div class="column field text">
-                        <input type="radio" class="field-radio" name="rerun-type" id="translate-course-rerun" value="translate" aria-labelledby="translate-course-rerun-label"/>
-                        <label id="translate-course-rerun-label" class="translate-course-rerun-label" for="translate-course-rerun">${_("Translate Course re-run")}</label>
-                        <span class="tip">${_("Create a copy of a course and request to change a course into a new language")}</span>
-                      </div>
-                    </li>
-
                     <li class="field text required" id="field-course-language">
                       <label for="rerun-course-language">${_("Course Language")}</label>
                       <select class="rerun-course-language" id="rerun-course-language" type="text" name="rerun-course-language">
@@ -142,6 +146,7 @@ from openedx.core.djangolib.js_utils import js_escaped_string
                       </select>
                       <span class="tip tip-stacked">${_("Identify the course language here. You can request for translation after creating a course")}</span>
                     </li>
+                    
                   </ol>
 
                   <input type="hidden" value="${allow_unicode_course_id}" class="allow-unicode-course-id" /> <!-- TODO: need to add support for allow_unicode_course_id in real view's template -->
