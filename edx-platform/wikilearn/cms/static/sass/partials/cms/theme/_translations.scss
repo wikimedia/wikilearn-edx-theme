@@ -75,6 +75,19 @@ html { height: 100%; }
       background: $theme-blue;
       color: #fff;
     }
+
+    &.approved {
+      background: none;
+      cursor: default;
+      color: $theme-green;
+    }
+
+    &.disabled {
+      color: #777;
+      cursor: not-allowed;
+      opacity: .8;
+      background: #eee;
+    }
   }
 
   .header,
