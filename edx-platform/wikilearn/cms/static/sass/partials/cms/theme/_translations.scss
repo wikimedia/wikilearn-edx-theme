@@ -34,6 +34,9 @@ html { height: 100%; }
         max-width: 290px;
       }
     }
+    .message {
+      text-align: center;
+    }
   }
 
   .translation-frame {
@@ -141,6 +144,10 @@ html { height: 100%; }
     ol {
       list-style: auto;
     }
+
+    ol > li::marker {
+      font-weight: bold;
+    }    
 
     p {
       margin: 2rem 0;
