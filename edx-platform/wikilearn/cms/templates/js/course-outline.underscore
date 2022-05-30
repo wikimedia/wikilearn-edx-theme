@@ -170,18 +170,18 @@ if (is_proctored_exam) {
                 <% } %>
                 <% if (xblockInfo.isDestinationCourse()) { %>
                     <li class="action-item action-show-status">
-                        <a href="#" data-tooltip="Mapped: <%- block_status.mapped %>" >
-                            <span class="icon fa fa-flag-o" aria-hidden="true"></span>
-                        </a>
+                        <span data-tooltip="Mapped: <%- block_status.mapped %>" class="action-button">
+                            <span class="icon fa <% if (block_status.mapped) { %> fa-flag <% } else { %> fa-flag-o <% } %>" aria-hidden="true"></span>
+                        </span>
                     </li>
                 <% } %>
                 <% if (xblockInfo.isMapped()) { %>
                     <li class="action-item action-switch" >
-                        <input type="checkbox" id="translationSwitch"
-                        data-tooltip="<%- gettext(checkboxTitle) %>"
-                        class="checkbox-direction-button action-button"
-                        <% if (destination_flag) { %> checked <% } %>>
-                        
+                        <span class="action-button" data-tooltip="<%- gettext(checkboxTitle) %>">
+                            <input type="checkbox" id="translationSwitch"
+                            class="checkbox-direction-button"
+                            <% if (destination_flag) { %> checked <% } %>>
+                        </span>
                     </li>
                 <% } %>
                 <% if (xblockInfo.isDeletable()) { %>

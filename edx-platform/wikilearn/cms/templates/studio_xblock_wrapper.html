@@ -21,6 +21,7 @@ checkbox_title = ''
 if is_destination_course:
     checkbox_title = 'Disable Translations' if destination_flag else 'Enable Translations'
 is_mapped = is_destination_course and block_status['mapped']
+flag_icon =  "icon fa fa-flag" if is_mapped else "icon fa fa-flag-o"
 %>
 
 <%namespace name='static' file='static_content.html'/>
@@ -115,16 +116,20 @@ is_mapped = is_destination_course and block_status['mapped']
                             % endif
                             % if is_destination_course:
                             <li class="action-item action-show-status">
-                                <a href="#" data-tooltip="Mapped : ${ block_status['mapped'] }" >
-                                    <span class="icon fa fa-flag-o" aria-hidden="true"></span>                                    </a>
+                                <span data-tooltip="Mapped : ${ block_status['mapped'] }" class="action-button">
+                                    <span class="${flag_icon}" aria-hidden="true"></span>
+                                </span>
                             </li>
                             % endif
                             % if is_mapped:
                                 <li class="action-item action-switch">
-                                    <input type="checkbox" id="${xblock.location}_checkboxTranslation"
-                                    data-tooltip="${_(checkbox_title)}"
-                                    class="checkbox-direction-button action-button"
-                                    ${'checked' if destination_flag else ''} >
+                                    <span class="action-button" data-tooltip="${_(checkbox_title)}">
+                                        <input type="checkbox" id="${xblock.location}_checkboxTranslation"
+                                        data-tooltip="${_(checkbox_title)}"
+                                        class="checkbox-direction-button"
+                                        ${'checked' if destination_flag else ''}
+                                        >
+                                    </span>
                                 </li>
                             % endif
                         % endif
