@@ -34,6 +34,12 @@ html { height: 100%; }
         max-width: 290px;
       }
     }
+    
+    .col.translation-block {
+      display: flex;
+      justify-content: space-between;
+    }
+
     .message {
       text-align: center;
     }
@@ -105,8 +111,13 @@ html { height: 100%; }
 
     .btn-box {
       position: absolute;
-      top: 6px;
+      align-items: center;
       right: 6px;
+
+      .options {
+        display: inline-block;
+        margin: 0px 10px;
+      }
     }
 
     &:hover {

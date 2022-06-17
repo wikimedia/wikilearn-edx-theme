@@ -171,7 +171,7 @@ if (is_proctored_exam) {
                 <% if (xblockInfo.isDestinationCourse()) { %>
                     <li class="action-item action-show-status">
                         <span data-tooltip="Mapped: <%- block_status.mapped %>" class="action-button">
-                            <span class="icon fa <% if (block_status.mapped) { %> fa-flag <% } else { %> fa-flag-o <% } %>" aria-hidden="true"></span>
+                            <span class="icon fa fa-globe %>" aria-hidden="true"></span>
                         </span>
                     </li>
                 <% } %>
