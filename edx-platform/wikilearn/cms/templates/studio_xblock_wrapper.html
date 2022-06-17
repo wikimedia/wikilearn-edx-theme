@@ -21,7 +21,7 @@ checkbox_title = ''
 if is_destination_course:
     checkbox_title = 'Disable Translations' if destination_flag else 'Enable Translations'
 is_mapped = is_destination_course and block_status['mapped']
-flag_icon =  "icon fa fa-flag" if is_mapped else "icon fa fa-flag-o"
+flag_icon =  "icon fa fa-globe"
 %>
 
 <%namespace name='static' file='static_content.html'/>
