@@ -27,6 +27,12 @@ from openedx.core.djangolib.js_utils import (
     <h1 class="page-header">${_("{studio_name} Home").format(studio_name=settings.STUDIO_SHORT_NAME)}</h1>
 
     % if user.is_active:
+      % if show_meta_api_buttons:
+        <div>
+          <button id="meta-send-translations-api"  data-blocks-send-fetch-url="${course_blocks_send_fetch_url}" class="button new-button meta-send-translations-api" >Send Tranlsations</button>
+          <button id="meta-fetch-translations-api"  data-blocks-send-fetch-url="${course_blocks_send_fetch_url}" class="button new-button meta-fetch-translations-api">Fetch Translations</button>
+        </div>
+      % endif
     <nav class="nav-actions" aria-label="${_('Page Actions')}">
       <h3 class="sr">${_("Page Actions")}</h3>
       <ul>
