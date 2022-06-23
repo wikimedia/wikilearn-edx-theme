@@ -391,7 +391,7 @@ html { height: 100%; }
     display: block;
   }
 
-  &.hover {
+  &:hover {
     svg {
       g {
         fill: white
