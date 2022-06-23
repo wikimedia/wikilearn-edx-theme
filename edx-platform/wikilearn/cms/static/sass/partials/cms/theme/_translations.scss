@@ -144,9 +144,7 @@ html { height: 100%; }
     }
 
     &:hover {
-      .col {
-        background: #eee;
-      }
+      background: #eee;
     }
 
     .fa-chevron-down {
@@ -182,6 +180,12 @@ html { height: 100%; }
     p {
       margin: 2rem 0;
     }
+
+
+//  .col {
+//    flex: 0 0 50%;
+//    flex: 1;
+//  }
   }
 
   .body {
@@ -342,6 +346,8 @@ html { height: 100%; }
     padding: 9px 12px;
     display: inline-block;
     vertical-align: bottom;
+    height: 36px;
+    margin-top: 0;
   }
 
   &.approved {
@@ -355,6 +361,7 @@ html { height: 100%; }
     cursor: not-allowed;
     opacity: .8;
     background: #eee;
+    border-color: #777;
   }
 }
 
