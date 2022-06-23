@@ -380,3 +380,22 @@ html { height: 100%; }
   display: inline-block;
   margin-left: 25px;
 }
+
+.icon-svg-globe {
+  padding-top: 8px !important;
+  padding-bottom: 8px !important;
+
+  svg {
+    width: 16px;
+    height: 16px;
+    display: block;
+  }
+
+  &.hover {
+    svg {
+      g {
+        fill: white
+      }
+    }
+  }
+}
