@@ -28,9 +28,9 @@ from openedx.core.djangolib.js_utils import (
 
     % if user.is_active:
       % if show_meta_api_buttons:
-        <div>
-          <button id="meta-send-translations-api"  data-blocks-send-fetch-url="${course_blocks_send_fetch_url}" class="button new-button meta-send-translations-api" >Send Tranlsations</button>
-          <button id="meta-fetch-translations-api"  data-blocks-send-fetch-url="${course_blocks_send_fetch_url}" class="button new-button meta-fetch-translations-api">Fetch Translations</button>
+        <div class="fetch-and-send">
+          <button id="meta-send-translations-api"  data-blocks-send-fetch-url="${course_blocks_send_fetch_url}" class="meta-send-translations-api btn-translations" >Send Translations</button>
+          <button id="meta-fetch-translations-api"  data-blocks-send-fetch-url="${course_blocks_send_fetch_url}" class="meta-fetch-translations-api btn-translations">Fetch Translations</button>
         </div>
       % endif
     <nav class="nav-actions" aria-label="${_('Page Actions')}">
