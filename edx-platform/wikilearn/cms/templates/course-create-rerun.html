@@ -119,6 +119,7 @@ from openedx.core.djangolib.js_utils import js_escaped_string
                       </div>
                     </li>
 
+                    % if not is_translated_rerun:
                     <li class="row">
                       <div class="column field text">
                         <input type="radio" class="field-radio" name="rerun-type" id="basic-rerun" value="basic" aria-labelledby="basic-rerun-label" />
@@ -126,13 +127,15 @@ from openedx.core.djangolib.js_utils import js_escaped_string
                         <span class="tip">${_("Create a copy of a course, It should be considered as a new course")}</span>
                       </div>
                       <div class="column field text">
-                        <input type="radio" class="field-radio" name="rerun-type" id="translate-course-rerun" value="translate" aria-labelledby="translate-course-rerun-label"/>
-                        <label id="translate-course-rerun-label" class="translate-course-rerun-label" for="translate-course-rerun">${_("Translate Course re-run")}</label>
-                        <span class="tip">${_("Create a copy of a course and request to change a course into a new language")}</span>
+                        <input type="radio" class="field-radio" name="rerun-type" id="translate-course-rerun" value="translated" aria-labelledby="translate-course-rerun-label"/>
+                        <label id="translate-course-rerun-label" class="translate-course-rerun-label" for="translate-course-rerun">${_("Translated Course re-run")}</label>
+                        <span class="tip">${_("Create a copy of a course for translation into a new language")}</span>
                       </div>
                     </li>
+                    % endif
 
-                    <li class="field text required" id="field-course-language">
+
+                    <li class="field text required" id="field-course-language" style="display: none">
                       <label for="rerun-course-language">${_("Course Language")}</label>
                       <select class="rerun-course-language" id="rerun-course-language" type="text" name="rerun-course-language">
                         <option value="" selected> - </option>
