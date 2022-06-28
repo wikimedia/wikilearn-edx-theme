@@ -72,18 +72,16 @@ html { height: 100%; }
 
     &.content-actions {
       display: flex;
-      justify-content: space-between;
+      justify-content: flex-end;
     }
 
     .content-bar {
       display: flex;
-      flex: 1;
+      flex-grow: 1;
     }
 
     .action-bar {
       display: flex;
-      flex: 1;
-      justify-content: right;
       align-items: center;
     }
   }
