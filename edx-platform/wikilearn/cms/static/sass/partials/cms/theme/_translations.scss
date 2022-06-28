@@ -58,7 +58,7 @@ html { height: 100%; }
 
   .col {
     padding: 8px $indent;
-    flex: 0 0 37.5%;
+    flex: 0 0 50%;
     font-size: 15px;
     position: relative;
 
@@ -70,10 +70,21 @@ html { height: 100%; }
       border-right: 1px solid #ccc;
     }
 
-    &.buttons-col {
-        display: flex;
-        flex: 0 0 25%;
-        padding-left: 25px !important;
+    &.content-actions {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .content-bar {
+      display: flex;
+      flex: 1;
+    }
+
+    .action-bar {
+      display: flex;
+      flex: 1;
+      justify-content: right;
+      align-items: center;
     }
   }
 
@@ -84,7 +95,9 @@ html { height: 100%; }
     padding: 2px 5px;
     display: inline-block;
     vertical-align: middle;
+    height: fit-content;
     border-radius: 3px;
+    margin: 0 10px;
 
     &.not-visible { visibility: hidden; }
 
@@ -108,15 +121,14 @@ html { height: 100%; }
   }
 
   .badge {
-    display: inline-block;
-    padding: 0.7em 0.7em;
-    font-size: 75%;
+    height: 36px;
+    line-height: 1.776rem;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 4px;
     font-weight: 600;
-    line-height: 1;
-    text-align: center;
-    white-space: nowrap;
-    vertical-align: baseline;
-    border-radius: 0.25rem;
+    font-size: 1.2rem;
+    padding: 9px 12px;
 
     &.badge-success {
       color: #fff;
@@ -136,11 +148,11 @@ html { height: 100%; }
 
     .btn-box {
       text-align: right;
+    }
 
-      .options {
-        display: inline-block;
-        margin: 0px 10px;
-      }
+    .btn-box > * {
+      display: inline-block;
+      margin-left: 10px;
     }
 
     &:hover {
@@ -327,7 +339,6 @@ html { height: 100%; }
   font-weight: 600;
   font-size: 1.2rem;
   padding: 5px 8px;
-  margin-top: 2px;
   background: #0075b4;
   border-color: #0075b4;
   color: #fff;
@@ -348,6 +359,7 @@ html { height: 100%; }
     vertical-align: bottom;
     height: 36px;
     margin-top: 0;
+    white-space: nowrap;
   }
 
   &.approved {
