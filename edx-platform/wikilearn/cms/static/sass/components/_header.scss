@@ -1,0 +1,158 @@
+// ====================
+// Header
+// ====================
+
+.wrapper-header {
+  padding: 0 14px 0 24px;
+  border-bottom: 1px solid $theme-blue;
+
+  header {
+
+    &.primary {
+      max-width: none;
+    }
+  }
+
+  .branding {
+    padding-top: 10px;
+    vertical-align: top;
+    padding-bottom: 10px;
+
+    .is-signedin.course & {
+      margin-right: 16px;
+    }
+
+    a {
+
+      img {
+        max-height: 36px;
+      }
+    }
+  }
+
+  .info-course {
+    padding-top: 0;
+
+    .course-org,
+    .course-number {
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .course-title {
+      max-width: 200px;
+    }
+
+    .is-signedin.course & {
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+  }
+
+  .nav-course {
+    padding: 10px 0 0;
+  }
+
+  .nav-account {
+    padding: 12px 0 13px;
+
+    .is-signedin & {
+      top: 0;
+    }
+  }
+
+  .nav-dd {
+
+    .nav-sub {
+
+      .nav-item {
+
+        a {
+          color: $base-font-color;
+        }
+      }
+    }
+
+    .title {
+      color: $base-font-color;
+
+      .fa-caret-down {
+        margin-left: 9px;
+        opacity: 1;
+      }
+    }
+  }
+
+  .ui-left {
+
+    .nav-item {
+
+      .title {
+        border: 0;
+        font-size: 14px;
+        padding: 7px 12px 12px;
+        border-radius: 0;
+        border-bottom: 4px solid transparent;
+
+        &:active,
+        &:hover {
+          color: $theme-blue;
+          border-bottom-color: $theme-blue;
+        }
+      }
+
+      &.nav-course-settings {
+
+        .title {
+
+          .schedule & {
+            color: $theme-blue;
+            border-bottom-color: $theme-blue;
+          }
+        }
+      }
+
+      &.nav-course-tools {
+
+        .title {
+
+          .tools & {
+            color: $theme-blue;
+            border-bottom-color: $theme-blue;
+          }
+        }
+      }
+
+      &.nav-course-courseware {
+
+        .title {
+
+          .view-outline & {
+            color: $theme-blue;
+            border-bottom-color: $theme-blue;
+          }
+        }
+      }
+    }
+  }
+
+  .ui-right {
+
+    .nav-item {
+
+      a,
+      .account-username {
+        font-weight: 400;
+        font-size: 14px;
+        color: $base-font-color;
+      }
+
+      .account-username {
+        display: inline-block;
+        vertical-align: middle;
+        max-width: 100px;
+        @extend %cont-truncated;
+      }
+    }
+  }
+}
