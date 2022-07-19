@@ -10,6 +10,17 @@ header.global-header {
                 margin: 10px 0 0 24px;
             }
         }
+
+        .course-header {
+          text-align: left;
+
+          .course-name {
+            line-height: 1.3;
+            margin-top: 2px;
+            max-width: 200px;
+            @extend %text-truncated;
+          }
+        }
     }
 
     .hamburger-menu {
@@ -64,6 +75,13 @@ header.global-header {
                 .nav-item {
                     vertical-align: middle;
                 }
+            }
+
+            .username {
+              display: inline-block;
+              vertical-align: middle;
+              max-width: 100px;
+              @extend %text-truncated;
             }
 
             .nav-item {
