@@ -1,0 +1,371 @@
+<%
+var releasedToStudents = xblockInfo.get('released_to_students');
+var visibilityState = xblockInfo.get('visibility_state');
+var published = xblockInfo.get('published');
+var prereq = xblockInfo.get('prereq');
+var hasPartitionGroups = xblockInfo.get('has_partition_group_components');
+var destination_flag = xblockInfo.get('destination_flag')
+var block_status = xblockInfo.get('meta_block_status')
+
+var userPartitionInfo = xblockInfo.get('user_partition_info');
+var selectedGroupsLabel = userPartitionInfo['selected_groups_label'];
+var selectedPartitionIndex = userPartitionInfo['selected_partition_index'];
+
+var statusMessages = [];
+var messageType;
+var messageText;
+var statusType = null;
+var addStatusMessage = function (statusType, message) {
+    var statusIconClass = '';
+    if (statusType === 'warning') {
+        statusIconClass = 'fa-file-o';
+    } else if (statusType === 'error') {
+        statusIconClass = 'fa-warning';
+    } else if (statusType === 'staff-only' || statusType === 'gated') {
+        statusIconClass = 'fa-lock';
+    } else if (statusType === 'partition-groups') {
+        statusIconClass = 'fa-eye';
+    }
+
+    statusMessages.push({iconClass: statusIconClass, text: message});
+};
+var checkboxTitle = 'Enable Translation'
+if (destination_flag){
+    checkboxTitle = 'Disable Translation'
+}
+
+if (prereq) {
+    var prereqDisplayName = '';
+    _.each(xblockInfo.get('prereqs'), function (p) {
+        if (p.block_usage_key == prereq) {
+            prereqDisplayName = p.block_display_name;
+            return false;
+        }
+    });
+    messageType = 'gated';
+    messageText = interpolate(
+        gettext('Prerequisite: %(prereq_display_name)s'),
+        {prereq_display_name: prereqDisplayName},
+        true
+    );
+    addStatusMessage(messageType, messageText);
+}
+if (staffOnlyMessage) {
+    messageType = 'staff-only';
+    messageText = gettext('Contains staff only content');
+    addStatusMessage(messageType, messageText);
+} else {
+    if (visibilityState === 'needs_attention' && xblockInfo.isVertical()) {
+        messageType = 'warning';
+        if (published && releasedToStudents) {
+            messageText = gettext('Unpublished changes to live content');
+        } else if (!published) {
+            messageText = gettext('Unpublished units will not be released');
+        } else {
+            messageText = gettext('Unpublished changes to content that will release in the future');
+        }
+        addStatusMessage(messageType, messageText);
+    }
+
+    if (selectedPartitionIndex !== -1 && !isNaN(selectedPartitionIndex) && xblockInfo.isVertical()) {
+        messageType = 'partition-groups';
+        messageText = edx.StringUtils.interpolate(
+                gettext('Access to this unit is restricted to: {selectedGroupsLabel}'),
+                {
+                    selectedGroupsLabel: selectedGroupsLabel
+                }
+        )
+        addStatusMessage(messageType, messageText);
+    } else if (hasPartitionGroups && xblockInfo.isVertical()) {
+        addStatusMessage(
+            'partition-groups',
+            gettext('Access to some content in this unit is restricted to specific groups of learners')
+        );
+    }
+}
+
+var gradingType = gettext('Ungraded');
+if (xblockInfo.get('graded')) {
+    gradingType = xblockInfo.get('format')
+}
+
+var is_proctored_exam = xblockInfo.get('is_proctored_exam');
+var is_practice_exam = xblockInfo.get('is_practice_exam');
+var is_onboarding_exam = xblockInfo.get('is_onboarding_exam');
+var exam_value;
+if (is_proctored_exam) {
+    if (is_onboarding_exam) {
+        exam_value = gettext('Onboarding Exam');
+    } else if (is_practice_exam) {
+        exam_value = gettext('Practice proctored Exam');
+    } else {
+        exam_value = gettext('Proctored Exam');
+    }
+
+} else {
+    exam_value = gettext('Timed Exam');
+}
+%>
+<% if (parentInfo) { %>
+<li class="outline-item outline-<%- xblockType %> <%- visibilityClass %> is-draggable <%- includesChildren ? 'is-collapsible' : '' %> <%- isCollapsed ? 'is-collapsed' : '' %>"
+    data-parent="<%- parentInfo.get('id') %>" data-locator="<%- xblockInfo.get('id') %>" id="<%- xblockInfo.get('id') %>">
+
+    <span class="draggable-drop-indicator draggable-drop-indicator-before"><span class="icon fa fa-caret-right" aria-hidden="true"></span></span>
+    <% if (xblockInfo.isHeaderVisible()) { %>
+    <div class="<%- xblockType %>-header">
+        <% if (includesChildren) { %>
+            <h3 class="<%- xblockType %>-header-details expand-collapse <%- isCollapsed ? 'expand' : 'collapse' %> ui-toggle-expansion"
+                title="<%- interpolate(
+                      gettext('Collapse/Expand this %(xblock_type)s'), { xblock_type: xblockTypeDisplayName }, true
+                ) %>"
+            >
+                <span class="icon fa fa-caret-down" aria-hidden="true"></span>
+        <% } else { %>
+            <h3 class="<%- xblockType %>-header-details">
+        <% } %>
+                <% if (xblockInfo.isVertical()) { %>
+                    <span class="unit-title item-title">
+                    <span class="wrapper-<%- xblockType %>-title wrapper-xblock-field incontext-editor is-editable" data-field="display_name" data-field-display-name="<%- gettext("Display Name") %>">
+                        <a class="<%- xblockType %>-title item-title xblock-field-value incontext-editor-value" href="<%- xblockInfo.get('studio_url') %>"><%- xblockInfo.get('display_name') %></a>
+                    </span>
+                    </span>
+                <% } else { %>
+                    <span class="wrapper-<%- xblockType %>-title wrapper-xblock-field incontext-editor is-editable" data-field="display_name" data-field-display-name="<%- gettext("Display Name") %>">
+                        <span class="<%- xblockType %>-title item-title xblock-field-value incontext-editor-value"><%- xblockInfo.get('display_name') %></span>
+                    </span>
+                <% } %>
+            </h3>
+        <div class="<%- xblockType %>-header-actions">
+            <ul class="actions-list">
+                <% if (xblockInfo.isSequential() && xblockInfo.get('proctoring_exam_configuration_link')) { %>
+                <li class="action-item">
+                    <a href="<%- xblockInfo.get('proctoring_exam_configuration_link') %>" data-tooltip="<%- gettext('Proctoring Settings') %>" class="proctoring-configuration-button" rel="noopener" target="_blank">
+                        <span class="action-button-text"><%- gettext('Proctoring Settings') %></span>
+                    </a>
+                </li>
+                <% } %>
+                <% if (xblockInfo.isPublishable()) { %>
+                    <li class="action-item action-publish">
+                        <a href="#" data-tooltip="<%- gettext('Publish') %>" class="publish-button action-button">
+                            <span class="icon fa fa-upload" aria-hidden="true"></span>
+                            <span class="sr action-button-text"><%- gettext('Publish') %></span>
+                        </a>
+                    </li>
+                <% } %>
+                <% if (xblockInfo.isEditableOnCourseOutline()) { %>
+                    <li class="action-item action-configure">
+                        <a href="#" data-tooltip="<%- gettext('Configure') %>" class="configure-button action-button">
+                            <span class="icon fa fa-gear" aria-hidden="true"></span>
+                            <span class="sr action-button-text"><%- gettext('Configure') %></span>
+                        </a>
+                    </li>
+                <% } %>
+                <% if (xblockInfo.isDuplicable()) { %>
+                    <li class="action-item action-duplicate">
+                        <a href="#" data-tooltip="<%- gettext('Duplicate') %>" class="duplicate-button action-button">
+                            <span class="icon fa fa-copy" aria-hidden="true"></span>
+                            <span class="sr action-button-text"><%- gettext('Duplicate') %></span>
+                        </a>
+                    </li>
+                <% } %>
+                <% if (xblockInfo.isDestinationCourse()) { %>
+                    <li class="action-item action-show-status">
+                        <span data-tooltip="Mapped: <%- block_status.mapped %>" class="action-button icon-svg-globe">
+                            <span aria-hidden="true">
+                                <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="454.000000pt" height="453.000000pt" viewBox="0 0 454.000000 453.000000" preserveAspectRatio="xMidYMid meet" style="">
+                                    <g transform="translate(0.000000,453.000000) scale(0.100000,-0.100000)" fill="#000000" stroke="none">
+                                        <path d="M1960 4514 c-814 -110 -1512 -659 -1810 -1426 -104 -267 -150 -519
+                                        -150 -821 1 -362 67 -657 219 -972 121 -252 251 -435 446 -630 526 -526 1275
+                                        -758 2015 -625 441 80 841 287 1169 605 362 350 591 802 667 1310 24 164 24
+                                        466 0 630 -151 1019 -937 1795 -1956 1931 -134 18 -461 17 -600 -2z m406 -273
+                                        c217 -103 420 -502 529 -1042 14 -70 25 -134 25 -143 0 -15 -57 -16 -655 -16
+                                        l-656 0 7 38 c109 630 337 1090 583 1178 56 20 101 16 167 -15z m-671 -93
+                                        c-52 -83 -164 -325 -203 -438 -48 -139 -103 -354 -132 -510 -11 -63 -23 -125
+                                        -26 -137 l-4 -23 -451 0 -450 0 7 23 c3 12 28 65 55 118 196 383 526 705 914
+                                        890 99 48 278 117 303 118 9 1 4 -14 -13 -41z m1265 -5 c440 -164 814 -484
+                                        1045 -892 30 -53 65 -122 79 -153 l26 -58 -454 0 -454 0 -12 73 c-61 377 -204
+                                        802 -344 1021 l-37 59 28 -8 c15 -3 71 -23 123 -42z m-1668 -1455 c-9 -119 -9
+                                        -737 0 -846 l7 -82 -481 2 -482 3 -8 30 c-45 160 -68 460 -49 650 11 110 45
+                                        308 57 327 3 4 221 8 484 8 l480 0 -8 -92z m1675 -5 c10 -127 10 -722 0 -836
+                                        l-9 -87 -691 2 -692 3 -6 65 c-17 166 -21 543 -10 735 7 110 15 203 17 207 3
+                                        5 315 8 694 8 l688 0 9 -97z m1243 45 c40 -188 45 -236 45 -458 0 -221 -7
+                                        -290 -41 -442 l-16 -68 -485 0 c-423 0 -484 2 -479 15 3 8 10 123 17 255 9
+                                        182 9 298 0 480 -7 132 -14 247 -17 255 -5 13 56 15 479 15 l485 0 12 -52z
+                                        m-2876 -1250 c3 -13 19 -97 37 -188 67 -349 188 -683 325 -897 l33 -52 -115
+                                        40 c-484 167 -901 533 -1132 995 -21 43 -43 89 -46 102 l-7 22 450 0 451 0 4
+                                        -22z m1586 3 c0 -70 -78 -386 -141 -568 -137 -400 -346 -656 -522 -641 -71 6
+                                        -119 31 -194 101 -195 183 -359 582 -447 1090 l-7 37 656 0 c632 0 655 -1 655
+                                        -19z m1164 -38 c-98 -223 -291 -488 -474 -652 -158 -142 -310 -244 -490 -330
+                                        -99 -46 -310 -126 -310 -116 0 3 17 31 37 62 139 218 283 644 343 1021 l12 72
+                                        454 0 454 0 -26 -57z"></path>
+                                    </g>
+                                </svg>
+                            </span>
+                        </span>
+                    </li>
+                <% } %>
+                <% if (xblockInfo.isMapped()) { %>
+                    <li class="action-item action-switch" >
+                        <span class="action-button" data-tooltip="<%- gettext(checkboxTitle) %>">
+                            <input type="checkbox" id="translationSwitch"
+                            class="checkbox-direction-button"
+                            <% if (destination_flag) { %> checked <% } %>>
+                        </span>
+                    </li>
+                <% } %>
+                <% if (xblockInfo.isDeletable()) { %>
+                    <li class="action-item action-delete">
+                        <a href="#" data-tooltip="<%- gettext('Delete') %>" class="delete-button action-button">
+                            <span class="icon fa fa-trash-o" aria-hidden="true"></span>
+                            <span class="sr action-button-text"><%- gettext('Delete') %></span>
+                        </a>
+                    </li>
+                <% } %>
+                <% if (xblockInfo.isDraggable()) { %>
+                <li class="action-item action-drag">
+                    <span data-tooltip="<%- gettext('Drag to reorder') %>"
+                          class="drag-handle <%- xblockType %>-drag-handle action">
+                        <span class="sr"><%- gettext('Drag to reorder') %></span>
+                    </span>
+                </li>
+                <% } %>
+            </ul>
+        </div>
+    </div>
+    <div class="<%- xblockType %>-status">
+        <% if (!xblockInfo.isVertical()) { %>
+            <% if (xblockInfo.get('explanatory_message') !=null) { %>
+                <div class="explanatory-message">
+                    <span>
+                        <%- xblockInfo.get('explanatory_message') %>
+                    </span>
+                </div>
+            <% } else { %>
+              <div class="status-release">
+                <p>
+                    <span class="sr status-release-label"><%- gettext('Release Status:') %></span>
+                    <span class="status-release-value">
+                        <% if (!course.get('self_paced')) { %>
+                            <% if (xblockInfo.get('released_to_students')) { %>
+                                <span class="icon fa fa-check" aria-hidden="true"></span>
+                                <%- gettext('Released:') %>
+                            <% } else if (xblockInfo.get('release_date')) { %>
+                                <span class="icon fa fa-clock-o" aria-hidden="true"></span>
+                                <%- gettext('Scheduled:') %>
+                            <% } else { %>
+                                <span class="icon fa fa-clock-o" aria-hidden="true"></span>
+                                <%- gettext('Unscheduled') %>
+                            <% } %>
+                            <% if (xblockInfo.get('release_date')) { %>
+                                <%- xblockInfo.get('release_date') %>
+                            <% } %>
+                        <% } %>
+                    </span>
+                </p>
+              </div>
+            <% } %>
+            <% if (xblockInfo.isChapter()) { %>
+                <div class="block-highlights">
+                    <% var number_of_highlights = (xblockInfo.get('highlights') || []).length; %>
+                        <button class="block-highlights-value highlights-button action-button">
+                            <span class="number-highlights"><%- number_of_highlights %></span>
+                            <%- gettext('Section Highlights') %>
+                        </button>
+                </div>
+            <% } %>
+            <% if (xblockInfo.get('is_time_limited')) { %>
+                <div class="status-timed-proctored-exam">
+                    <p>
+                        <span class="sr status-grading-label"> <%- gettext('Graded as:') %> </span>
+                        <span class="icon fa fa-check" aria-hidden="true"></span>
+                        <span class="status-grading-value"> <%- gradingType %> </span>
+                         -
+                        <span class="sr status-proctored-exam-label"> <%- exam_value %> </span>
+                        <span class="status-proctored-exam-value"> <%- exam_value %> </span>
+                        <% if (xblockInfo.get('due_date') && !course.get('self_paced')) { %>
+                            <span class="status-grading-date"> <%- gettext('Due:') %> <%- xblockInfo.get('due_date') %> </span>
+                        <% } %>
+                    </p>
+                </div>
+            <% } else if (xblockInfo.get('due_date') || xblockInfo.get('graded')) { %>
+                <div class="status-grading">
+                    <p>
+                        <span class="sr status-grading-label"> <%- gettext('Graded as:') %> </span>
+                        <span class="icon fa fa-check" aria-hidden="true"></span>
+                        <span class="status-grading-value"> <%- gradingType %> </span>
+                        <% if (xblockInfo.get('due_date') && !course.get('self_paced')) { %>
+                            <span class="status-grading-date"> <%- gettext('Due:') %> <%- xblockInfo.get('due_date') %> </span>
+                        <% } %>
+                    </p>
+                </div>
+            <% } %>
+            <div class="status-hide-after-due">
+                <p>
+                    <% if (xblockInfo.get('hide_after_due')) { %>
+                        <span class="icon fa fa-eye-slash" aria-hidden="true"></span>
+                        <span class="status-hide-after-due-value">
+                        <% if (course.get('self_paced')) { %>
+                            <%- gettext("Subsection is hidden after course end date") %> </span>
+                        <% } else { %>
+                            <%- gettext("Subsection is hidden after due date") %> </span>
+                        <% } %>
+                    <% } %>
+                </p>
+            </div>
+        <% } %>
+        <% if (statusMessages.length > 0) { %>
+            <div class="status-messages">
+            <% for (var i=0; i<statusMessages.length; i++) { %>
+                <div class="status-message">
+                    <span class="icon fa <%- statusMessages[i].iconClass %>" aria-hidden="true"></span>
+                    <p class="status-message-copy"><%- statusMessages[i].text %></p>
+                </div>
+            <% } %>
+            </div>
+        <% } %>
+    </div>
+    <% } %>
+<% } %>
+
+    <% if (!parentInfo && xblockInfo.get('child_info') && xblockInfo.get('child_info').children.length === 0) { %>
+        <div class="no-content add-section">
+            <p><%- gettext("You haven't added any content to this course yet.") %>
+                <a href="#" class="button button-new" data-category="<%- childCategory %>"
+                   data-parent="<%- xblockInfo.get('id') %>" data-default-name="<%- defaultNewChildName %>"
+                   title="<%- interpolate(
+                         gettext('Click to add a new %(xblock_type)s'), { xblock_type: defaultNewChildName }, true
+                   ) %>"
+                >
+                    <span class="icon fa fa-plus" aria-hidden="true"></span><%- addChildLabel %>
+                </a>
+            </p>
+        </div>
+    <% } else if (!xblockInfo.isVertical()) { %>
+        <div class="outline-content <%- xblockType %>-content">
+            <ol class="<%- typeListClass %> is-sortable">
+                <li class="ui-splint ui-splint-indicator">
+                    <span class="draggable-drop-indicator draggable-drop-indicator-initial"><span class="icon fa fa-caret-right" aria-hidden="true"></span></span>
+                </li>
+            </ol>
+
+            <% if (childType) { %>
+            <% if (xblockInfo.isChildAddable()) { %>
+                <div class="add-<%- childType %> add-item">
+                    <a href="#" class="button button-new" data-category="<%- childCategory %>"
+                       data-parent="<%- xblockInfo.get('id') %>" data-default-name="<%- defaultNewChildName %>"
+                       title="<%- interpolate(
+                             gettext('Click to add a new %(xblock_type)s'), { xblock_type: defaultNewChildName }, true
+                       ) %>"
+                    >
+                        <span class="icon fa fa-plus" aria-hidden="true"></span><%- addChildLabel %>
+                    </a>
+                </div>
+                <% } %>
+            <% } %>
+        </div>
+    <% } %>
+
+<% if (parentInfo) { %>
+    <span class="draggable-drop-indicator draggable-drop-indicator-after"><span class="icon fa fa-caret-right" aria-hidden="true"></span></span>
+</li>
+<% } %>
