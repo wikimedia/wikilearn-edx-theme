@@ -42,7 +42,7 @@ from openedx.core.djangoapps.site_configuration import helpers as configuration_
       </div>
     % if show_explore_courses:
       <div class="mobile-nav-item hidden-mobile nav-item nav-tab">
-          <a class="${'active ' if marketing_link('COURSES') in request.path else ''}tab-nav-link discover-new-link" href="${marketing_link('COURSES')}"
+          <a class="${'active ' if (reverse('sysadmin:sysadmin') not in request.path and marketing_link('COURSES') in request.path) else ''}tab-nav-link discover-new-link" href="${marketing_link('COURSES')}"
              aria-current="${'page' if '/courses' in request.path else 'false'}">
              ${_('Catalog')}
           </a>
@@ -62,6 +62,14 @@ from openedx.core.djangoapps.site_configuration import helpers as configuration_
         ${_('Inbox')}
       </a>
     </div>
+    % if user.is_superuser:
+      <div class="mobile-nav-item hidden-mobile nav-item nav-tab">
+        <a class="${'active ' if reverse('sysadmin:sysadmin') in request.path else ''}tab-nav-link discover-new-link" href="${reverse('sysadmin:sysadmin')}"
+          aria-current="${'page' if '/sysadmin' in request.path else 'false'}">
+          ${_('Sysadmin')}
+        </a>
+      </div>
+    % endif
   </div>
   <div class="secondary authed">
     % if enable_help_link:
