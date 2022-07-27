@@ -1,3 +1,15 @@
 $indent:            25px;
-$theme-green:       #008100;
-$theme-blue:        #36c;
+
+// ----------------------------
+// #COLORS
+// ----------------------------
+
+$theme-green:            #008100;
+$theme-blue:             #36c;
+$base-font-color:        #000;
+
+$primary:                 $theme-blue;
+
+$font-family-sans-serif: "Helvetica Neue", Helvetica, "Open Sans", Arial, sans-serif;
+
+$f-sans-serif:           $font-family-sans-serif;
