@@ -34,7 +34,7 @@ should_show_order_history = should_redirect_to_order_history_microfrontend() and
         <img data-hj-suppress class="user-image-frame" src="${profile_image_url}" alt="">
         <span class="sr-only">${_("Dashboard for:")}</span>
         <span class="image-placeholder hidden">${_("TS")}</span>
-        <span data-hj-suppress class="username">${Truncator(displayname).chars(20)}</span>
+        <span data-hj-suppress class="username" title="${Truncator(displayname).chars(20)}">${Truncator(displayname).chars(20)}</span>
     </a>
 </div>
 <div class="nav-item hidden-mobile nav-item-dropdown" tabindex="-1">
