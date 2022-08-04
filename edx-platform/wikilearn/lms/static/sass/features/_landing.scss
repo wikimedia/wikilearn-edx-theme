@@ -732,3 +732,13 @@ a:focus:not(.btn) {
         }
     }
 }
+
+.view-profile {
+
+  .profile-section-one-fields {
+
+    .u-field-value-readonly {
+      word-break: break-all;
+    }
+  }
+}
