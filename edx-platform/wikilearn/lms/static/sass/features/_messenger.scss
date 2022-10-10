@@ -7,7 +7,7 @@ html {
     .settings-language-form {
       margin-bottom: -60px;
       position: relative;
-      z-index: 99;
+      z-index: 9;
     }
 
     .wrapper-footer {
@@ -116,7 +116,7 @@ html {
                 }
 
                 .fa-times-circle {
-                    right: 0;
+                    @include right(0);
                     top: 0;
                     font-size: 19px;
                     padding: 6px;
