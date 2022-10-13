@@ -120,3 +120,41 @@
         }
     }
 }
+
+.instructor-dashboard-wrapper-2 {
+
+  div.customBrowseBtn {
+
+    .enhanced-input-file {
+      box-sizing: border-box;
+      @include rtl {
+        border-radius: 0 4px 4px 0;
+      }
+    }
+
+    .file-browse {
+
+      .file_field {
+        right: -29%;
+      }
+
+      .browse {
+        @include rtl {
+          border-radius: 3px 0 0 3px;
+          margin-right: 265px;
+        }
+      }
+    }
+  }
+}
+
+.page-header-secondary {
+  .forum-search {
+    .field-label {
+      max-width: 200px;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+  }
+}
