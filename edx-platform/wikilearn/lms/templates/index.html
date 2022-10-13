@@ -133,6 +133,7 @@ from openedx.core.djangolib.markup import HTML, Text
         $('.courses-listing').slick({
           slidesToShow: 3,
           slidesToScroll: 1,
+          rtl: Boolean('${static.dir_rtl()}' == 'rtl'),
           responsive: [
             {
               breakpoint: 575,
