@@ -742,3 +742,12 @@ a:focus:not(.btn) {
     }
   }
 }
+
+div.xmodule_display.xmodule_ProblemBlock div.problem {
+    .choicegroup {
+        input[type="radio"], input[type="checkbox"] {
+            @include margin-right(10px);
+            @include margin-left(5px);
+        }
+    }
+}
