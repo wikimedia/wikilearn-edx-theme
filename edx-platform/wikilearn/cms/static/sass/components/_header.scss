@@ -156,3 +156,77 @@
     }
   }
 }
+
+// dropdown
+.nav-dd {
+
+  // CASE: left-hand side arrow/dd
+  &.ui-left {
+    .wrapper-nav-sub {
+      @include left(0);
+    }
+
+    .nav-sub {
+      @include text-align(left);
+
+      // ui triangle/nub
+      &::after {
+        @include margin-left(-10px);
+        @include left($baseline);
+      }
+
+      &::before {
+        @include margin-left(-11px);
+        @include left($baseline);
+      }
+    }
+  }
+
+  // CASE: right-hand side arrow/dd
+  &.ui-right {
+    > ol {
+      margin-bottom: 0;
+    }
+
+    .wrapper-nav-sub {
+      left: auto;
+      right: 0;
+    }
+
+    @include rtl {
+      .nav-account-user {
+        .wrapper-nav-sub {
+          left: 0;
+          right: auto;
+        }
+      }
+    }
+
+
+    .nav-sub {
+
+      // ui triangle/nub
+      &::after {
+        @include margin-right(-10px);
+        @include right($baseline);
+      }
+
+      &::before {
+        @include margin-right(-11px);
+        @include right($baseline);
+      }
+    }
+  }
+}
+
+div.add-xblock-component {
+  .new-component {
+    .new-component-type {
+      .add-xblock-component-button {
+        .name {
+          font-size: 13px;
+        }
+      }
+    }
+  }
+}

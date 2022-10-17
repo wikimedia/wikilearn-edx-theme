@@ -12,7 +12,7 @@ header.global-header {
         }
 
         .course-header {
-          text-align: left;
+          @include text-align(left);
 
           .course-name {
             @include ellipsis(200px);
