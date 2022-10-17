@@ -67,7 +67,7 @@ html { height: 100%; }
     }
 
     &:first-child {
-      border-right: 1px solid #ccc;
+      @include border-right(1px solid #ccc);
     }
 
     &.content-actions {
@@ -129,12 +129,12 @@ html { height: 100%; }
     position: relative;
 
     .btn-box {
-      text-align: right;
+      @include text-align(right);
     }
 
     .btn-box > * {
       display: inline-block;
-      margin-left: 10px;
+      @include margin-left(10px);
     }
 
     &:hover {
@@ -143,7 +143,7 @@ html { height: 100%; }
 
     .fa-chevron-down {
       top: 14px;
-      left: 5px;
+      @include left(5px);
       position: absolute;
       font-size: 11px;
       transition: transform .3s ease;
@@ -159,7 +159,7 @@ html { height: 100%; }
 
     ul, ol {
       margin: 2rem 0;
-      padding-left: 2rem;
+      @include padding-left(2rem);
       list-style: inherit;
     }
 
@@ -174,31 +174,25 @@ html { height: 100%; }
     p {
       margin: 2rem 0;
     }
-
-
-//  .col {
-//    flex: 0 0 50%;
-//    flex: 1;
-//  }
   }
 
   .body {
 
     .col {
-      padding-left: $indent*2;
+      @include padding-left($indent*2);
 
       .fa-chevron-down {
-        left: $indent*2-15;
+        @include left($indent*2-15);
       }
     }
 
     .body {
 
       .col {
-        padding-left: $indent*3;
+        @include padding-left($indent*3);
 
         .fa-chevron-down {
-          left: $indent*3-15;
+          @include left($indent*3-15);
         }
       }
     }
@@ -266,7 +260,7 @@ html { height: 100%; }
     content: "";
     height: 22px;
     width: 22px;
-    left: 3px;
+    @include left(3px);
     bottom: 4px;
     background-color: white;
     -webkit-transition: .4s;
@@ -293,14 +287,14 @@ html { height: 100%; }
 
     .cross {
         position: absolute;
-        top: 0px;
-        left: 12px;
+        top: 0;
+        @include left(12px);
       }
 
     .tick {
         position: absolute;
-        top: 0px;
-        right: 17px;
+        top: 0;
+        @include right(17px);
       }
   }
 
@@ -392,7 +386,12 @@ html { height: 100%; }
 
 .course-badge {
   display: flex;
-  justify-content: right;
+  @include ltr {
+    justify-content: right;
+  }
+  @include rtl {
+    justify-content: left;
+  }
   margin: 0;
 }
 
@@ -409,7 +408,7 @@ html { height: 100%; }
 .status-course-blocks-mapping {
   vertical-align: top;
   display: inline-block;
-  margin-left: 25px;
+  @include margin-left(25px);
 }
 
 .icon-svg-globe {
@@ -427,6 +426,16 @@ html { height: 100%; }
       g {
         fill: white
       }
+    }
+  }
+}
+
+.xmodule_display.xmodule_ProblemBlock div.problem {
+  .choicegroup {
+
+    input[type="radio"], input[type="checkbox"] {
+      @include margin-right(10px);
+      @include margin-left(5px);
     }
   }
 }
