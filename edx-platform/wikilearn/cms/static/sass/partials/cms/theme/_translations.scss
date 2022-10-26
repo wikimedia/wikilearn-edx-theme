@@ -439,3 +439,22 @@ html { height: 100%; }
     }
   }
 }
+
+div.xmodule_edit.xmodule_ProblemBlock {
+  .editor {
+    .editor-bar {
+      @include rtl {
+        z-index: 1;
+      }
+    }
+  }
+
+  .simple-editor-cheatsheet {
+    @include rtl {
+      left: auto;
+      right: 70%;
+      border-left: 0;
+      border-right: 1px solid #b2b2b2;
+    }
+  }
+}
