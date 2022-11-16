@@ -21,13 +21,13 @@
 #main, #course-content {
     &.font-open-sans {
         font-family: $font-family-open-sans !important;
-        &, h1, h2, h3, h4, h5, h6, p, label {
+        &, h1, h2, h3, h4, h5, h6, p, label, select {
             font-family: $font-family-open-sans !important;
         }
     }
     &.font-trebuchet {
         font-family: $font-family-trebuchet !important;
-        &, h1, h2, h3, h4, h5, h6, p, label {
+        &, h1, h2, h3, h4, h5, h6, p, label, select {
             font-family: $font-family-trebuchet !important;
         }
     }
