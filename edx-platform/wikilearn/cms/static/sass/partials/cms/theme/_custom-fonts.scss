@@ -20,13 +20,23 @@
 
 #content {
     &.font-open-sans {
-        &, .item-title {
+        .item-title {
             font-family: $font-family-open-sans !important;
+        }
+        .wrapper-xblock {
+            &, h1, h2, h3, h4, h5, h6, p, label, .field {
+                font-family: $font-family-open-sans !important;
+            }
         }
     }
     &.font-trebuchet {
-        &, .item-title {
+        .item-title {
             font-family: $font-family-trebuchet !important;
+        }
+        .wrapper-xblock {
+            &, h1, h2, h3, h4, h5, h6, p, label, .field {
+                font-family: $font-family-trebuchet !important;
+            }
         }
     }
 }
