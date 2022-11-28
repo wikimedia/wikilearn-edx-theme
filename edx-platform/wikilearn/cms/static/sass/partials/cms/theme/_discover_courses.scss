@@ -52,7 +52,10 @@ html { height: 100%; }
                     padding: 8px;
                 }
                 
-                tr:hover {background-color: #ddd;}
+                tr:hover {
+                    background-color: #ddd;
+                    cursor: pointer;
+                }
                 
                 th {
                     padding-top: 12px;
@@ -86,6 +89,9 @@ html { height: 100%; }
                         }
                         .title-buttons {
                             padding: 0 20px;
+                            .btn {
+                                cursor: pointer;
+                            }
                         }
                     }
                 }
@@ -154,7 +160,10 @@ html { height: 100%; }
                 align-items: center;
                 align-content: center;
                 font-size: 1.5rem;
+                cursor: pointer;
+
                 input {
+                    cursor: pointer;
                     @include ltr {
                         margin-right: 5px;
                     }
