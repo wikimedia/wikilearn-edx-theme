@@ -51,6 +51,15 @@ html { height: 100%; }
     background: #fff;
     padding: 20px 5px;
     border-radius: 5px;
+  
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      padding: 0px 25px;
+      font-size: 14px;
+      color: gray;
+      background-color: whitesmoke;
+    }
   }
 }
 
@@ -148,6 +157,13 @@ html { height: 100%; }
       font-size: 11px;
       transition: transform .3s ease;
     }
+  }
+
+  .course-info-header {
+    &:hover {
+      background: transparent !important;
+    }
+    cursor: default !important;
   }
 
   .translation-body {
