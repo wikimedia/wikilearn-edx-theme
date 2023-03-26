@@ -18,6 +18,27 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'Montserrat';
+    src:
+        url('#{$static-path}/fonts/Montserrat/Montserrat.eot') format('embedded-opentype'),
+        url('#{$static-path}/fonts/Montserrat/Montserrat.woff') format('woff'),
+        url('#{$static-path}/fonts/Montserrat/Montserrat.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Source Sans Pro';
+    src:
+        url('#{$static-path}/fonts/SourceSansPro/SourceSansPro.eot') format('embedded-opentype'),
+        url('#{$static-path}/fonts/SourceSansPro/SourceSansPro.woff2') format('woff2'),
+        url('#{$static-path}/fonts/SourceSansPro/SourceSansPro.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+
 #content {
     &.font-open-sans {
         .item-title {
@@ -36,6 +57,26 @@
         .wrapper-xblock {
             &, h1, h2, h3, h4, h5, h6, p, label, .field {
                 font-family: $font-family-trebuchet !important;
+            }
+        }
+    }
+    &.font-montserrat {
+        .item-title {
+            font-family: $font-family-montserrat !important;
+        }
+        .wrapper-xblock {
+            &, h1, h2, h3, h4, h5, h6, p, label, .field {
+                font-family: $font-family-montserrat !important;
+            }
+        }
+    }
+    &.font-source-sans-pro {
+        .item-title {
+            font-family: $font-family-source-sans-pro !important;
+        }
+        .wrapper-xblock {
+            &, h1, h2, h3, h4, h5, h6, p, label, .field {
+                font-family: $font-family-source-sans-pro !important;
             }
         }
     }
