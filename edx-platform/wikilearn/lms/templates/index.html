@@ -12,7 +12,7 @@ from openedx.core.djangolib.markup import HTML, Text
     <section class="main-banner">
       <div class="banner-container">
         <div class="text-block">
-          <h1>Unlock The World’s Knowledge</h1>
+          <h1>${_("Unlock The World’s Knowledge")}</h1>
           <p hidden>Any details or captions Any details or captions Any details or captions Any details or captions Any details Any details or captions Any details or captions</p>
         </div>
         <div class="image-block">
@@ -51,9 +51,9 @@ from openedx.core.djangolib.markup import HTML, Text
       <section class="courses-block">
         <div class="home-tabs hidden">
           <ul>
-            <li class="active"><a href="#">Featured</a></li>
-            <li><a href="#">Recently Added</a></li>
-            <li><a href="#">All Courses</a></li>
+            <li class="active"><a href="#">${_("Featured")}</a></li>
+            <li><a href="#">${_("Recently Added")}</a></li>
+            <li><a href="#">${_("All Courses")}</a></li>
           </ul>
         </div>
         <%include file="${courses_list}" />
@@ -62,18 +62,18 @@ from openedx.core.djangolib.markup import HTML, Text
     <section class="blog hidden">
       <div class="blog-container">
         <article class="blog-info-post">
-          <h2>See what we have been up to</h2>
-          <a href="#" class="link-read-more">View All News ></a>
+          <h2>${_("See what we have been up to")}</h2>
+          <a href="#" class="link-read-more">${_("View All News >")}</a>
         </article>
         <article class="blog-post">
           <div class="text-block">
             <div class="blog-header">
-              <span class="date">19 April 2021</span>
-              <span class="tag">Category</span>
+              <span class="date">${_("19 April 2021")}</span>
+              <span class="tag">${_("Category")}</span>
             </div>
-            <h2 class="blog-title">Wikipedia readers in Latin America invited to support 20 years of free knowledge through new fundraising campaign</h2>
-            <span class="author">By Pats Pena</span>
-            <a href="#" class="link-read-more">Read More ></a>
+            <h2 class="blog-title">${_("Wikipedia readers in Latin America invited to support 20 years of free knowledge through new fundraising campaign")}</h2>
+            <span class="author">${_("By Pats Pena")}</span>
+            <a href="#" class="link-read-more">${_("Read More >")}</a>
           </div>
           <div class="image-block">
             <img src="${static.url('images/blog-1.jpg')}" alt="">
@@ -82,12 +82,12 @@ from openedx.core.djangolib.markup import HTML, Text
         <article class="blog-post">
           <div class="text-block">
             <div class="blog-header">
-              <span class="date">26 Februrary 2021</span>
-              <span class="tag">Category</span>
+              <span class="date">${_("26 Februrary 2021")}</span>
+              <span class="tag">${_("Category")}</span>
             </div>
-            <h2 class="blog-title">Wikipedia needs local journalism and the open Web</h2>
-            <span class="author">By Jan Gerlach</span>
-            <a href="#" class="link-read-more">Read More ></a>
+            <h2 class="blog-title">${_("Wikipedia needs local journalism and the open Web")}</h2>
+            <span class="author">${_("By Jan Gerlach")}</span>
+            <a href="#" class="link-read-more">${_("Read More >")}</a>
           </div>
           <div class="image-block">
             <img src="${static.url('images/blog-2.jpg')}" alt="">
@@ -98,13 +98,13 @@ from openedx.core.djangolib.markup import HTML, Text
     <section class="subscription hidden">
       <div class="subscribe-container">
         <div class="text-box">
-          <h2>Subscribe to news about ongoing projects and initiatives</h2>
+          <h2>${_("Subscribe to news about ongoing projects and initiatives")}</h2>
         </div>
         <div class="form-box">
           <form action="#">
             <div class="subscribe-form">
               <input type="email" class="form-field form-control" placeholder="Sign up for email updates" />
-              <button type="submit" class="form-button">Subscribe</button>
+              <button type="submit" class="form-button">${_("Subscribe")}</button>
             </div>
           </form>
         </div>
