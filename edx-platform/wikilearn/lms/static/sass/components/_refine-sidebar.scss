@@ -9,3 +9,11 @@
         margin: ($baseline/4) !important;
     }
 }
+
+.facet-list{
+    ul{
+        max-height: ($baseline*1.5)*5;
+        overflow: hidden;
+        overflow-y:scroll;
+    }
+}
