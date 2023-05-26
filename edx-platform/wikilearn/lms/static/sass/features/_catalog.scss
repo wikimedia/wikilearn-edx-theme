@@ -3,15 +3,12 @@
     @extend %t-icon3;
     @extend %t-strong;
 
-    border: 2px solid $m-blue-d6;
-    border-radius: ($baseline*0.1);
-    padding: 0 ($baseline*0.7);
     background: $blue;
     box-shadow: none;
     color: $white;
     text-shadow: none;
     float: right;
-    margin-bottom: 1rem;
+    margin: 0 1px 5px 0;
 
     //STATE: hover, focus
     &:hover,
