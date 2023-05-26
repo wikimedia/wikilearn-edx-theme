@@ -1,0 +1,21 @@
+<div class="facet-header-container">
+    <h3 class="header-facet">
+        <%- displayName %>
+    </h3>
+    <% if (name === 'language' && listIsHuge) { %>
+        <input type="text" id="lng-srch-facet-input", class="lng-srch-facet-input" placeholder="Search..." />
+    <% } %>
+</div>
+<ul data-facet="<%- name %>" class="facet-list collapse">
+    <%= HtmlUtils.ensureHtml(optionsHtml) %>
+</ul>
+<% if (listIsHuge) { %>
+    <div class="toggle ">
+        <button class="show-more discovery-button">
+            <%- gettext("More") %>
+        </button>
+        <button class="show-less hidden discovery-button">
+            <%- gettext("Less") %>
+        </button>
+    </div>
+<% } %>
