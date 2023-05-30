@@ -13,7 +13,7 @@
     }
 
     .facet-list {
-      max-height: ($baseline * 1.5 * 7) - ($baseline / 2);
+      max-height: ($baseline * 1.5 * 7) - $baseline;
       overflow: hidden;
       overflow-y: scroll;
     }
