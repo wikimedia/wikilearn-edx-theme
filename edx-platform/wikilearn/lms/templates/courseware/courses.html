@@ -40,7 +40,7 @@
         % if course_discovery_enabled:
         <div id="discovery-form" role="search" aria-label="course" class="wrapper-search-context">
           <div id="discovery-message" class="search-status-label  all-courses"></div>
-          <div>
+          <div class="wrapper-inputs">
             %if follow_up_courses:
             <button onclick="prerequisitsHandler()" class="btn btn-primary prerequisits-button" id="study-next-btn">
                 ${_('What to study next?')}
@@ -62,7 +62,7 @@
           </div>
         </div>
 
-        <div id="filter-bar" class="filters hide-phone is-collapsed">
+        <div id="filter-bar" class="filters hide-phone is-collapsed all-courses">
         </div>
         % endif
 

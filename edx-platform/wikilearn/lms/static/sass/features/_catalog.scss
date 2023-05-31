@@ -1,18 +1,32 @@
-.prerequisits-button {
-    @extend %ui-depth2;
-    @extend %t-icon3;
-    @extend %t-strong;
+.wrapper-search-context {
+  display: flex;
+  justify-content: flex-end;
 
-    background: $blue;
-    box-shadow: none;
-    color: $white;
-    text-shadow: none;
-    float: right;
-    margin: 0 1px 5px 0;
+  .wrapper-inputs {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
 
-    //STATE: hover, focus
-    &:hover,
-    &:focus {
-      background: $theme-blue;
+    .wrapper-search-input {
+      width: 350px;
+    }
+
+    .prerequisits-button {
+      @extend %ui-depth2;
+      @extend %t-icon3;
+      @extend %t-strong;
+
+      background: $blue;
+      box-shadow: none;
+      color: $white;
+      text-shadow: none;
+      margin: 0 1px 5px 0;
+
+      //STATE: hover, focus
+      &:hover,
+      &:focus {
+        background: $theme-blue;
+      }
     }
   }
+}
