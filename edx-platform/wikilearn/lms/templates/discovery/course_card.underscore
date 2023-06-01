@@ -17,7 +17,7 @@
         </header>
         <section class="course-info" aria-hidden="true">
             <div class="description">
-                <p><%- content.description %></p>
+                <p><%- content.short_description %></p>
             </div>
             <div class="course-date" aria-hidden="true">
                 <%- interpolate(
