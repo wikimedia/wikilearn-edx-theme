@@ -7,6 +7,7 @@
       justify-content: space-between;
       width: 100%;
       border-top: 1px solid $gray-l4;
+      flex-wrap: wrap;
 
       .lng-srch-facet-input {
         margin: ($baseline/4) !important;
@@ -17,6 +18,11 @@
       max-height: ($baseline * 1.5 * 10) - $baseline;
       overflow: hidden;
       overflow-y: scroll;
+    }
+
+    .facet-option {
+      font-size: small;
+      overflow: overlay;
     }
   }
 }

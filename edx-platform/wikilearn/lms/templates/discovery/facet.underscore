@@ -1,4 +1,4 @@
-<div class=".facet-container">
+<div class="facet-container">
     <div class="facet-header-container">
         <h3 class="header-facet">
             <%- displayName %>
