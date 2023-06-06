@@ -1,0 +1,38 @@
+<article class="course" role="region" aria-label="<%- content.display_name %>">
+    <a href="/courses/<%- course %>/about">
+        <header class="course-image">
+            <div class="cover-image">
+                <img src="<%- image_url %>" alt="<%- content.display_name %> <%- content.number %>" />
+                <div class="learn-more" aria-hidden="true"><%- gettext("LEARN MORE") %></div>
+                 <h2 class="course-name">
+                    <span class="course-text">
+                        <span class="course-organization"><%- org %></span>
+                        <span class="course-code"><%- content.number %></span>
+                    </span>
+                    <span class="course-title-wrap">
+                        <span class="course-title"><%- content.display_name %></span>
+                    </span>
+                </h2>
+            </div>
+        </header>
+        <section class="course-info" aria-hidden="true">
+            <div class="description">
+                <p><%- content.short_description %></p>
+            </div>
+            <div class="course-date" aria-hidden="true">
+                <%- interpolate(
+                      gettext("Starts: %(start_date)s"),
+                      { start_date: start }, true
+                    ) %>
+            </div>
+            <span class="learn-more"><%- gettext("Learn More >") %></span>
+        </section>
+        <div class="sr">
+            <ul>
+                <li><%- org %></li>
+                <li><%- content.number %></li>
+                <li><%- gettext("Starts") %><time itemprop="startDate" datetime="<%- start %>"><%- start %></time></li>
+            </ul>
+        </div>
+    </a>
+</article>

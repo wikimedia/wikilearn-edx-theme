@@ -7,6 +7,7 @@
 $header-logo-width: 60px !default;
 $header-logo-height: 36px;
 $header-user-image-size: 40px !default;
+$baseline: 20px !default;
 
 // ----------------------------
 // #COLORS
@@ -15,13 +16,22 @@ $theme-blue:                #36c;
 $cornflower-blue:           #447ff5;
 $butterfly-bush:            #6b4ba1;
 $base-font-color:           #000;
+$gray:                      rgb(127,127,127);
 $footer-bg:                 #f6f6f6;
+$m-blue-d6:                 #256a97 !default;
+$blue:                      rgb(0, 159, 230) !default;
+$white:                     rgb(255, 255, 255) !default;
+$m-blue-d5:                 rgb(0, 158, 231) !default;
+$gray-l4:                   tint($gray,80%);
 $primary:                   $theme-blue;
 $action-primary-bg:         $theme-blue;
 
 $link-color:                $theme-blue;
 $link-hover:                $cornflower-blue;
 $link-visited:              $butterfly-bush;
+
+// Course Discover
+$course-card-height: ($baseline*18) !default;
 
 
 $font-family-sans-serif: "Helvetica Neue", Helvetica, "Open Sans", Arial, sans-serif;
