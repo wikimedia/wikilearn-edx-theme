@@ -32,7 +32,14 @@ from openedx.features.wikimedia_features.wikimedia_general.api.v0.utils import g
 <div class="nav-links">
   <div class="main">
     % for tab in header_tabs:
-      % if tab['id'] == 'sysadmin':
+      % if tab['id'] == 'catalog':
+        <div class="mobile-nav-item hidden-mobile nav-item nav-tab">
+          <a class="${'active ' if ('/sysadmin' not in request.path and tab['url'] in request.path) else ''}tab-nav-link" href="${tab['url']}"
+              aria-current="${'page' if tab['url'] in request.path else 'false'}">
+              ${tab['name']}
+          </a>
+        </div>
+      % elif tab['id'] == 'sysadmin':
         <div class="mobile-nav-item hidden-mobile nav-item nav-tab">
           <a class="${'active ' if tab['url'] in request.path else ''}tab-nav-link" href="${tab['url']}"
               aria-current="${'page' if tab['url'] in request.path else 'false'}">
