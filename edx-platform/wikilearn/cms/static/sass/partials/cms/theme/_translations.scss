@@ -474,3 +474,26 @@ div.xmodule_edit.xmodule_ProblemBlock {
     }
   }
 }
+
+.wrapper-sock {
+  z-index: 0;
+}
+
+.list-courses {
+  .grid-header {
+    margin: 20px;
+    input {
+      min-width: 300px;
+    }
+  }
+  .studio-filters {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin: 20px;
+
+    .filter-field {
+      width: 200px;
+    }
+  }
+}

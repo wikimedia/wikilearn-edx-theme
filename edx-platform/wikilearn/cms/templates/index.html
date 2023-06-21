@@ -368,10 +368,11 @@ from openedx.core.djangolib.js_utils import (
       %if len(courses) > 0 or optimization_enabled:
       <div class="courses courses-tab react-course-listing ${ 'active' if active_tab == 'courses' else ''}">
         ${static.renderReact(
-          component="CourseOrLibraryListing",
+          component="WikiCourseListing",
           id="react-course-listing",
           props={
             'items': sorted(courses, key=lambda s: s['display_name'].lower() if s['display_name'] is not None else ''),
+            'studio_filter_options': active_studio_filter_options,
             'linkClass': 'course-link',
             'idBase': 'course',
             'allowReruns': allow_course_reruns and rerun_creator_status and course_creator_status=='granted'
@@ -498,10 +499,11 @@ from openedx.core.djangolib.js_utils import (
       <div class="archived-courses react-archived-course-listing archived-courses-tab">
         % if type(archived_courses) is list:
         ${static.renderReact(
-          component="CourseOrLibraryListing",
+          component="WikiCourseListing",
           id="react-archived-course-listing",
           props={
             'items': sorted(archived_courses, key=lambda s: s['display_name'].lower() if s['display_name'] is not None else ''),
+            'studio_filter_options': archived_studio_filter_options,
             'linkClass': 'course-link',
             'idBase': 'archived',
             'allowReruns': allow_course_reruns and rerun_creator_status and course_creator_status=='granted'
