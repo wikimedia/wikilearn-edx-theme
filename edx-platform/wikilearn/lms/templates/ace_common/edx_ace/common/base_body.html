@@ -168,12 +168,12 @@
                             {% endfor %}
                         </td>
                     </tr>
-                    <tr>
+                    {% comment %} <tr>
                         <!-- COPYRIGHT -->
                         <td>
                             {% trans "Copyright " %} &copy; {% now "Y" %} {{ site_name }}. {% trans " All rights reserved" as tmsg %}{{ tmsg | force_escape }}.<br/>
                         </td>
-                    </tr>
+                    </tr> {% endcomment %}
                     {% if unsubscribe_url %}
                         <tr>
                             <td>
