@@ -38,6 +38,16 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'Noto Kufi Arabic';
+    src:
+        url('#{$static-path}/fonts/OpenSans/NotoKufiArabic-Regular.woff2') format('woff2'),
+        url('#{$static-path}/fonts/OpenSans/NotoKufiArabic-Regular.woff') format('woff'),
+        url('#{$static-path}/fonts/NotoKufiArabic/NotoKufiArabic-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
 
 #content {
     &.font-open-sans {
@@ -77,6 +87,16 @@
         .wrapper-xblock {
             &, h1, h2, h3, h4, h5, h6, p, label, .field {
                 font-family: $font-family-source-sans-pro !important;
+            }
+        }
+    }
+    &.font-noto-kufi-arabic {
+        .item-title {
+            font-family: $font-family-noto-kufi-arabic !important;
+        }
+        .wrapper-xblock {
+            &, h1, h2, h3, h4, h5, h6, p, label, .field {
+                font-family: $font-family-noto-kufi-arabic !important;
             }
         }
     }
