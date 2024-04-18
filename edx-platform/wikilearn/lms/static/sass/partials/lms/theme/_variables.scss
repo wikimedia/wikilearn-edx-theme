@@ -22,13 +22,15 @@ $m-blue-d6:                 #256a97 !default;
 $blue:                      rgb(0, 159, 230) !default;
 $white:                     rgb(255, 255, 255) !default;
 $m-blue-d5:                 rgb(0, 158, 231) !default;
-$gray-l4:                   tint($gray,80%);
+$gray-l4:                   mix(white,$gray,80%);
+$gray-l5:                   #f2f2f2;
 $primary:                   $theme-blue;
 $action-primary-bg:         $theme-blue;
 
 $link-color:                $theme-blue;
 $link-hover:                $cornflower-blue;
 $link-visited:              $butterfly-bush;
+$error-color:               rgb(203, 7, 18) !default;
 
 // Course Discover
 $course-card-height: ($baseline*18) !default;
