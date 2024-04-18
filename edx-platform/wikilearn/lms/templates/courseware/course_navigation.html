@@ -46,9 +46,7 @@ masquerading_as_student = is_masquerading_as_student(request.user, course.id)
                 % for tab in tab_list:
                     <%
                     tab_is_active = tab.tab_id in (active_page, default_tab)
-                    if tab.name == "Progress":
-                        tab_name = "Score"
-                    elif tab.name == "Wiki Progress":
+                    if tab.name == "Wiki Progress":
                         tab_name = "Progress"
                     else:
                         tab_name = tab.name
