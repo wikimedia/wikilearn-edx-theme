@@ -17,9 +17,11 @@ The branching model we follow for the theme to streamline development and deploy
 
 We follow a three phase deployment strategy.
 
-First, we deploy the develop branch to the Development Environment. Then, deploy to the staging environment which is a mirror of the production environment.
+First, we deploy the develop branch to the Development Environment for testing and verification. 
 
-Once everything is tested, we deploy to the production environment.
+Once everything looks good, we make a new release/tag and then deploy that release/tag to the staging environment which is a mirror of the production environment
+
+Once everything is verified, we finally deploy to the production environment.
 
 The servers are available live on the following urls:
 
